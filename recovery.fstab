@@ -1,0 +1,24 @@
+# Android fstab file.
+# The filesystem that contains the filesystem checker binary (typically /system) cannot
+# specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
+
+# Point             FS      1st Device 2nd Device                                     Flags
+# EMMC
+/boot               emmc    /dev/block/platform/bootdevice/by-name/boot          flags=display="Kernel Image";backup=1;flashimg=1
+/recovery           emmc    /dev/block/platform/bootdevice/by-name/recovery      flags=display="Recovery Image";backup=1;flashimg=1
+/dtbo               emmc    /dev/block/platform/bootdevice/by-name/dtbo          flags=display="DTBO Image";backup=1;flashimg=1
+/system_image       emmc    /dev/block/platform/bootdevice/by-name/system        flags=display="System Image";backup=1;flashimg=1
+/vendor_image       emmc    /dev/block/platform/bootdevice/by-name/vendor        flags=display="Vendor Image";backup=1;flashimg=1
+/vbmeta             emmc    /dev/block/platform/bootdevice/by-name/vbmeta        flags=display="Vbmeta Image";backup=1;flashimg=1
+
+# System and Vendor (and Product) Points
+/system_root        ext4    /dev/block/platform/bootdevice/by-name/system        flags=display="System";backup=1;wipeingui
+/vendor             ext4    /dev/block/platform/bootdevice/by-name/vendor        flags=display="Vendor";backup=1;wipeingui
+
+# Cache and ETC Points
+/cache              ext4    /dev/block/platform/bootdevice/by-name/cache         flags=display="Cache";backup=1;wipeingui
+/data               ext4    /dev/block/platform/bootdevice/by-name/userdata      flags=display="Data";backup=1;wipeingui
+
+# SD Card and OTG Points
+/external_sd        auto    /dev/block/mmcblk1p1  /dev/block/mmcblk1             flags=display="MicroSD Card";storage;wipeingui;removable
+/usb_otg            auto    /dev/block/sda1       /dev/block/sda                 flags=display="USB-OTG";storage;wipeingui;removable
