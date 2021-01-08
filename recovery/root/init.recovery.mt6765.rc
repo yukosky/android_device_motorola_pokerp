@@ -1,4 +1,5 @@
 on init
+    export ANDROID_ROOT /system_root
     mkdir /config
     mount configfs none /config
     mkdir /config/usb_gadget/g1 0770 shell shell
