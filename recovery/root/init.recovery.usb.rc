@@ -36,12 +36,6 @@ on fs
     mount functionfs adb /dev/usb-ffs/adb uid=2000,gid=2000
     write /sys/class/android_usb/android0/f_ffs/aliases adb
 
-on boot
-    setprop sys.usb.acm_cnt 0
-    setprop sys.usb.acm_port0 ""
-    setprop sys.usb.acm_port1 ""
-    setprop sys.usb.acm_enable 0
-
 on property:sys.usb.config=none
     write /config/usb_gadget/g1/UDC "none"
     stop adbd
